@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body { 
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.head-text {
+    text-align: center;
+}
+</style>
+<body>
+
+<h3 class="head-text">Анкета на заполнение</h3>
+
+<div>
+  <form action="thanks.html">
+    <label for="fname">Ваше имя:</label>
+    <input type="text" id="fname" name="firstname" placeholder="Имя">
+
+    <label for="lname">Ваша фамилия:</label>
+    <input type="text" id="lname" name="lastname" placeholder="Фамилия">
+
+    <label for="birth">Дата вашего рождения:</label>
+    <pre></pre>
+    <input type="date" id="birth" name="birthdate" placeholder="Дата рождения">
+    <pre></pre>
+
+    <label for="country">Страна:</label>
+    <select id="country" name="country" onchange="populateCities()">
+      <option value="MD">Республика Молдова</option>
+      <option value="RU">Российская Федерация</option>
+      <option value="UA">Украина</option>
+      <option value="KZ">Республика Казахстан</option>
+      <option value="BY">Республика Беларусь</option>
+      <option value="AR">Республика Армения</option>
+      <option value="AZ">Азербайджанская Республика</option>
+      <option value="KG">Кыргызская Республика</option>
+      <option value="TG">Республика Таджикистан</option>
+      <option value="TU">Туркменистан</option>
+      <option value="UZ">Узбекистан</option>
+    </select>
+  
+    <label for="city">Город:</label>
+    <select id="city" name="city">
+            <option value="" disabled selected hidden>Для начала выберите страну</option>
+        </select>
+    
+    <label for="num">Номер телефона:</label>
+    <input type="text" id="num" name="number" placeholder="Номер (c + в начале и кодом региона)">
+    <input type="submit" value="Отправить анкету">
+  </form>
+</div>
+    
+</body>
+<script>
+        function populateCities() {
+			var countrySelect = document.getElementById("country");
+			var citySelect = document.getElementById("city");
+            while (citySelect.options.length) {
+				citySelect.remove(0);
+			}
+            var selectedCountry = countrySelect.value;
+            var cities = [];
+			switch(selectedCountry) {
+				case "MD":
+					cities = ["Кишинёв", "Бельцы", "Тирасполь", "Бендеры"];
+					break;
+				case "RU":
+					cities = ["Москва", "Санкт-Петербург", "Екатеринбург", "Новосибирск"];
+					break;
+				case "UA":
+					cities = ["Киев", "Одесса", "Харьков", "Днепр"];
+					break;
+                case "KZ":
+                    cities = ["Астана", "Караганда", "Алма-Ата", "Шымкент"];
+                    break;
+                case "BY":
+                    cities = ["Минск", "Гомель", "Витебск", "Брест"];
+                    break;
+                case "AR":
+                    cities = ["Баку", "Гянджа", "Сумгайыт", "Агджабеди"];
+                    break;
+                case "AZ":
+                    cities = ["Ереван", "Гюмри", "Иджеван", "Дилижан"];
+                    break;
+                case "KG":
+                    cities = ["Бишкек", "Ош", "Каракол", "Токмак"];
+                    break;
+                case "TG":
+                    cities = ["Душанбе", "Худжанд", "Бохтар", "Куляб"];
+                    break;
+                case "TU":
+                    cities = ["Ашхабад", "Сердар", "Мары", "Балканабад"];
+                    break;
+                case "UZ":
+                    cities = ["Ташкент", "Наманган", "Нукус", "Андижан"];
+                    break;    
+			}
+            for (var i = 0; i < cities.length; i++) {
+				var cityOption = document.createElement("option");
+				cityOption.text = cities[i];
+				cityOption.value = cities[i];
+				citySelect.add(cityOption);
+            }
+        }
+    </script>
+</html>
